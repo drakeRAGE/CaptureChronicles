@@ -1,5 +1,5 @@
 {
-  "name": "book-store",
+  "name": "gallery",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon api/index.js",
     "start": "node api/index.js",
-    "build": "npm install && npm install --prefix book && npm run build --prefix book"
+    "build": "npm install && npm install --prefix gallery && npm run build --prefix gallery"
   },
   "keywords": [],
   "author": "",
