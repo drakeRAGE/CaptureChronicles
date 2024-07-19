@@ -17,6 +17,9 @@ import Contact from './pages/Contact'
 // import Footer from './components/Footer'
 // import Newsletter from './components/Newsletter'
 
+
+
+//This repo basic code is taken from my diff. repo of book-mern-stack
 export default function App() {
   return (
     <BrowserRouter>

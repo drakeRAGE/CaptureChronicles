@@ -11,7 +11,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
 });
 
-const InfoSection = () => {
+const Event_map = () => {
   const coordinates = { lat: 28.7041,  lng: 77.1025}; // here later put coordinates dynamically
   const tags = [
     'Prismatic', 'Geyser', 'Grand', 'Yellowstone', 'Spring', 'Wyoming',
@@ -21,9 +21,10 @@ const InfoSection = () => {
   ];
 
   return (
-    <div className="flex flex-col md:flex-row gap-6 p-6">
+    <div className="flex flex-col md:flex-row gap-6 p-6 pb-28">
       <div className="flex-1">
         <div className="h-96 relative">
+          <h3 className='font-bold text-4xl'>LOCATION : </h3>
           <MapContainer center={[coordinates.lat, coordinates.lng]} zoom={13} className="h-full w-full">
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -39,7 +40,7 @@ const InfoSection = () => {
       </div>
       <div className="w-full md:w-1/3 flex flex-col gap-4">
         <div>
-          <h2 className="text-2xl font-semibold">Info</h2>
+          <h2 className="text-2xl font-semibold">...</h2>
         </div>
         <div>
           <h3 className="text-xl font-medium">Coordinates</h3>
@@ -60,4 +61,4 @@ const InfoSection = () => {
   );
 }
 
-export default InfoSection;
+export default Event_map;
