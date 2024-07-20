@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body{
-    /* background-color: rgb(17 24 39); */
+    background-color: rgb(17 24 39);
 }
 
 .container{
