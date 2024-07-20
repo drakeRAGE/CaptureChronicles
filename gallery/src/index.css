@@ -1,14 +1,14 @@
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body{
-    background-color: rgb(17 24 39);
+    /* background-color: rgb(17 24 39); */
 }
 
 .container{
     @apply max-w-6xl mx-auto;
-} */
+}
 
 
 /* @tailwind base;
@@ -37,7 +37,7 @@ body {
 } */
 
 
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -53,4 +53,4 @@ body {
     background: linear-gradient(90deg, rgba(14, 165, 233, 1) 0%, rgba(37, 99, 235, 1) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
+} */

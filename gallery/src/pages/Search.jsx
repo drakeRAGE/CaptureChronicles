@@ -8,10 +8,11 @@ export default function Search() {
     const navigate = useNavigate();
     const [sidebardata, setSidebardata] = useState({
         searchTerm: '',
-        type: 'all',
-        published: false,
-        offer: false,
-        sort: 'created_at',
+        // type: 'all',
+        // published: false,
+        // offer: false,
+        // location:'',
+        sort: 'ticketfee',
         order: 'desc',
     })
     
@@ -22,23 +23,23 @@ export default function Search() {
     useEffect(()=> {
         const urlParams = new URLSearchParams(location.search)
         const searchTermFromUrl = urlParams.get('searchTerm')
-        const typeFromUrl = urlParams.get('type')
-        const publishedFromUrl = urlParams.get('published')
-        const offerFromUrl = urlParams.get('offer')
+        // const typeFromUrl = urlParams.get('type')
+        // const publishedFromUrl = urlParams.get('published')
+        // const offerFromUrl = urlParams.get('offer')
         const sortFromUrl = urlParams.get('sort')
         const orderFromUrl = urlParams.get('order')
 
         if(searchTermFromUrl ||
-        typeFromUrl ||
-        publishedFromUrl ||
-        offerFromUrl ||
+        // typeFromUrl ||
+        // publishedFromUrl ||
+        // offerFromUrl ||
         sortFromUrl ||
         orderFromUrl) {
             setSidebardata({
                 searchTerm: searchTermFromUrl || '',
-                type: typeFromUrl || 'all',
-                published: publishedFromUrl === 'true' ? true : false,
-                offer: offerFromUrl === 'true' ? true : false,
+                // type: typeFromUrl || 'all',
+                // published: publishedFromUrl === 'true' ? true : false,
+                // offer: offerFromUrl === 'true' ? true : false,
                 sort: sortFromUrl || 'created_at',
                 order: orderFromUrl  || 'desc',
             });
@@ -64,17 +65,17 @@ export default function Search() {
     }, [location.search])
 
     const handleChange = (e) => {
-        if(e.target.id === 'all' || e.target.id === 'rent' || e.target.id === 'sale') {
-            setSidebardata({...sidebardata, type: e.target.id})
-        }
+        // if(e.target.id === 'all' || e.target.id === 'rent' || e.target.id === 'sale') {
+        //     setSidebardata({...sidebardata, type: e.target.id})
+        // }
 
         if(e.target.id === 'searchTerm') {
             setSidebardata({...sidebardata, searchTerm: e.target.value})
         }
 
-        if(e.target.id === 'published' || e.target.id === 'offer') {
-            setSidebardata({...sidebardata, [e.target.id]: e.target.checked || e.target.checked === 'true' ? true : false})
-        }
+        // if(e.target.id === 'published' || e.target.id === 'offer') {
+        //     setSidebardata({...sidebardata, [e.target.id]: e.target.checked || e.target.checked === 'true' ? true : false})
+        // }
 
         if (e.target.id === 'sort_order') {
             const sort = e.target.value.split('_')[0] || 'created_at';
@@ -91,9 +92,9 @@ export default function Search() {
         const urlParams = new URLSearchParams();
 
         urlParams.set('searchTerm', sidebardata.searchTerm)
-        urlParams.set('type', sidebardata.type)
-        urlParams.set('published', sidebardata.published)
-        urlParams.set('offer', sidebardata.offer)
+        // urlParams.set('type', sidebardata.type)
+        // urlParams.set('published', sidebardata.published)
+        // urlParams.set('offer', sidebardata.offer)
         urlParams.set('sort', sidebardata.sort)
         urlParams.set('order', sidebardata.order)
 
@@ -107,6 +108,7 @@ export default function Search() {
         const urlParams = new URLSearchParams(location.search);
         urlParams.set('startIndex', startIndex);
         const searchQuery = urlParams.toString();
+        console.log(searchQuery);
         const res = await fetch(`/api/listing/get?${searchQuery}`);
         const data = await res.json();
         if (data.length < 9) {
@@ -114,6 +116,8 @@ export default function Search() {
         }
         setListings([...listings, ...data]);
     };
+
+    console.log(listings)
 
   return (
     <div className='flex flex-col md:flex-row'>
@@ -123,7 +127,7 @@ export default function Search() {
                     <label className='whitespace-nowrap'>Search Term</label>
                     <input type="text" id='searchTerm' placeholder='Search...' className='border rounded-lg p-3 w-full' value={sidebardata.searchTerm} onChange={handleChange}/>
                 </div>
-                <div className='flex gap-2 flex-wrap items-center'>
+                {/* <div className='flex gap-2 flex-wrap items-center'>
                     <label className='font-semibold '>Type:</label>
                     <div className='flex gap-2'>
                         <input type="checkbox" id='all' className='w-5' onChange={handleChange} checked={sidebardata.type ==='all'} />
@@ -149,13 +153,13 @@ export default function Search() {
                         <input type="checkbox" id='published' className='w-5' onChange={handleChange} checked={sidebardata.published} />
                         <span>Published</span>
                     </div>
-                </div>
+                </div> */}
                 
                 <div className='flex items-center gap-2'>
                     <label >Sort :</label>
                     <select onChange={handleChange} defaultValue={'created_at_desc'} className='border rounded-lg p-3' id="sort_order">
-                        <option value="regularPrice_desc" className='font-semibold'>Price high to low</option>
-                        <option value="regularPrice_asc" className='font-semibold'>Price low to high</option>
+                        <option value="ticketfee_desc" className='font-semibold'>Price high to low</option>
+                        <option value="ticketfee_asc" className='font-semibold'>Price low to high</option>
                         <option value="createdAt_desc" className='font-semibold'>Latest</option>
                         <option value="createdAt_asc" className='font-semibold'>Oldest</option>
                     </select>
@@ -165,10 +169,10 @@ export default function Search() {
         </div>
 
         <div className='flex-1'>
-            <h1 className='text-3xl font-semibold border-b p-3 text-slate-700 mt-5'>Listing results :</h1>
+            <h1 className='text-3xl font-semibold border-b p-3 text-slate-700 mt-5'>Events results :</h1>
             <div className='p-7 flex flex-wrap gap-4'>
                 {!loading && listings.length === 0 && (
-                    <p className='text-xl text-slate-700'>No listing found!</p>
+                    <p className='text-xl text-slate-700'>No Event found!</p>
                 )}
                 {loading && (
                     <p className='text-xl text-slate-700 text-center w-full'>Loading...</p>

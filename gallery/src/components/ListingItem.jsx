@@ -17,10 +17,16 @@ export default function ListingItem({ listing }) {
           <p className='truncate text-lg font-semibold text-slate-700'>
             {listing.name}
           </p>
-          <div className='flex items-center gap-1'>
+          {/* <div className='flex items-center gap-1'>
             <MdLocationOn className='h-4 w-4 text-green-700' />
             <p className='text-sm text-gray-600 truncate w-full'>
               {listing.author}
+            </p>
+          </div> */}
+          <div className='flex items-center gap-1'>
+            <MdLocationOn className='h-4 w-4 text-green-700' />
+            <p className='text-sm text-gray-600 truncate w-full'>
+              {listing.location}
             </p>
           </div>
           <p className='text-sm text-gray-600 line-clamp-2'>
@@ -33,18 +39,18 @@ export default function ListingItem({ listing }) {
               : listing.regularPrice.toLocaleString('en-US')}
             {listing.type === 'rent' && ' / month'}
           </p> */}
-          <div className='text-slate-700 flex gap-4'>
-            {/* <div className='font-bold text-xs'>
+          {/* <div className='text-slate-700 flex gap-4'>
+            <div className='font-bold text-xs'>
               {listing.Pages > 1
                 ? `${listing.pages} pages `
                 : `${listing.pages} pages `}
-            </div> */}
-            {/* <div className='font-bold text-xs'>
+            </div>
+            <div className='font-bold text-xs'>
               {listing.Chapters > 1
                 ? `${listing.chapters} chapters `
                 : `${listing.chapters} chapters `}
-            </div> */}
-          </div>
+            </div>
+          </div> */}
         </div>
       </Link>
     </div>

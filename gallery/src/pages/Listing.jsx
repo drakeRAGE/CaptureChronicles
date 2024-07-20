@@ -5,9 +5,9 @@ import SwiperCore from 'swiper';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css/bundle';
 import {FaShare} from 'react-icons/fa';
-import { HiLightningBolt } from "react-icons/hi";
-import { VscDebugBreakpointData, VscAzureDevops } from "react-icons/vsc";
-import { SiAlpinelinux } from "react-icons/si";
+// import { HiLightningBolt } from "react-icons/hi";
+// import { VscDebugBreakpointData, VscAzureDevops } from "react-icons/vsc";
+// import { SiAlpinelinux } from "react-icons/si";
 import { IoMan } from "react-icons/io5";
 import { useSelector } from 'react-redux';
 import Contact from '../components/Contacts';
@@ -59,7 +59,7 @@ export default function Listing() {
                   className='h-[550px]'
                   style={{
                     background: `url(${url}) center no-repeat`,
-                    // backgroundSize: 'cover',
+                    backgroundSize: 'cover',
                   }}
                 ></div>
               </SwiperSlide>
@@ -84,17 +84,22 @@ export default function Listing() {
           )}
           <div className='flex flex-col max-w-4xl mx-auto p-3 my-7 gap-4'>
             <p className='text-2xl font-semibold'>
-              {listing.name} - ${' '} 
-              {listing.offer
+              {listing.name}
+              {/* {listing.name} - ${' '}  */}
+              {/* {listing.offer
                 ? listing.discountPrice.toLocaleString('en-US')
                 : listing.regularPrice.toLocaleString('en-US')}
-              {listing.type === 'rent' && ' / month'}
+              {listing.type === 'rent' && ' / month'} */}
             </p>
-            <p className='flex items-center mt-6 gap-2 text-slate-600  text-sm'>
+            {/* <p className='flex items-center mt-6 gap-2 text-slate-600  text-sm'>
                 <IoMan className='text-lg'/>
               <span className='font-bold'>Author</span> - {listing.author}
+            </p> */}
+            <p className='flex items-center mt-6 gap-2 text-slate-600  text-sm'>
+                <IoMan className='text-lg'/>
+              <span className='font-bold'>Organizer </span> - {listing.organizer_name}
             </p>
-            <div className='flex gap-4'>
+            {/* <div className='flex gap-4'>
               <p className='bg-red-900 w-full max-w-[200px] text-white text-center p-1 rounded-md'>
                 {listing.type === 'rent' ? 'For Rent' : 'For Sale'}
               </p>
@@ -103,12 +108,16 @@ export default function Listing() {
                   ${+listing.regularPrice - +listing.discountPrice} OFF
                 </p>
               )}
-            </div>
+            </div> */}
             <p className='text-slate-800'>
               <span className='font-semibold text-black'>Description - </span>
               {listing.description}
             </p>
-            <ul className='text-green-900 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6'>
+            <p className='text-slate-800'>
+              <span className='font-semibold text-black'>Ticket Fee - </span>
+              {listing.ticketfee}
+            </p>
+            {/* <ul className='text-green-900 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6'>
               <li className='flex items-center gap-1 whitespace-nowrap '>
                 <HiLightningBolt className='text-lg' />
                 {listing.Pages > 1
@@ -132,7 +141,7 @@ export default function Listing() {
                 <VscAzureDevops className='text-lg' />
                 {listing.published ? 'published' : 'Un-published'}
               </li>
-            </ul>
+            </ul> */}
             {currentUser && listing.userRef !== currentUser._id && !contact && (
             <button onClick={()=> setContact(true)} className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3'>Contact author</button>
             )}
