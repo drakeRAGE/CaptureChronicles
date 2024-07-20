@@ -86,6 +86,24 @@ export default function Home() {
         </div>
       </section>
 
+      {/* swiper */}
+      {/* <Swiper navigation>
+        {offerListings &&
+          offerListings.length > 0 &&
+          offerListings.map((listing) => (
+            <SwiperSlide key=''>
+              <div
+                style={{
+                  background: `url(${listing.imageUrls[0]}) center no-repeat`,
+                }}
+                className='h-[500px]'
+                key={listing._id}
+              ></div>
+            </SwiperSlide>
+          ))}
+          If you're seeing an error here, just ignore this error
+      </Swiper> */}
+
       <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10'>
         {offerListings && offerListings.length > 0 && (
           <div className='bg-slate-800 p-8 rounded-lg'>

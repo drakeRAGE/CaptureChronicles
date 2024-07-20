@@ -1,7 +1,56 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body{
     background-color: rgb(17 24 39);
+}
+
+.container{
+    @apply max-w-6xl mx-auto;
+} */
+
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply bg-gray-100;
+}
+
+.container {
+    @apply max-w-7xl mx-auto;
+} */
+
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply bg-gray-100;
+}
+
+.container {
+    @apply max-w-5xl mx-auto;
+} */
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply bg-gray-900 text-gray-200;
+}
+
+.container {
+    @apply max-w-7xl mx-auto;
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, rgba(14, 165, 233, 1) 0%, rgba(37, 99, 235, 1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
