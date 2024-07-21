@@ -85,63 +85,35 @@ export default function Listing() {
           <div className='flex flex-col max-w-4xl mx-auto p-3 my-7 gap-4'>
             <p className='text-2xl font-semibold'>
               {listing.name}
-              {/* {listing.name} - ${' '}  */}
-              {/* {listing.offer
-                ? listing.discountPrice.toLocaleString('en-US')
-                : listing.regularPrice.toLocaleString('en-US')}
-              {listing.type === 'rent' && ' / month'} */}
             </p>
-            {/* <p className='flex items-center mt-6 gap-2 text-slate-600  text-sm'>
-                <IoMan className='text-lg'/>
-              <span className='font-bold'>Author</span> - {listing.author}
-            </p> */}
             <p className='flex items-center mt-6 gap-2 text-slate-600  text-sm'>
                 <IoMan className='text-lg'/>
               <span className='font-bold'>Organizer </span> - {listing.organizer_name}
             </p>
-            {/* <div className='flex gap-4'>
-              <p className='bg-red-900 w-full max-w-[200px] text-white text-center p-1 rounded-md'>
-                {listing.type === 'rent' ? 'For Rent' : 'For Sale'}
-              </p>
-              {listing.offer && (
-                <p className='bg-green-900 w-full max-w-[200px] text-white text-center p-1 rounded-md'>
-                  ${+listing.regularPrice - +listing.discountPrice} OFF
-                </p>
-              )}
-            </div> */}
             <p className='text-slate-800'>
-              <span className='font-semibold text-black'>Description - </span>
+              <span className='font-semibold text-gray-700'>Description - </span>
               {listing.description}
             </p>
             <p className='text-slate-800'>
-              <span className='font-semibold text-black'>Ticket Fee - </span>
+              <span className='font-semibold text-gray-700'>Ticket Fee - </span>
               {listing.ticketfee}
             </p>
-            {/* <ul className='text-green-900 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6'>
-              <li className='flex items-center gap-1 whitespace-nowrap '>
-                <HiLightningBolt className='text-lg' />
-                {listing.Pages > 1
-                  ? `${listing.Pages} pages `
-                  : `${listing.Pages} page `}
-              </li>
-              <li className='flex items-center gap-1 whitespace-nowrap '>
-                <VscDebugBreakpointData className='text-lg' />
-
-                {listing.Chapters > 1
-                  ? `${listing.Chapters} chapters `
-                  : `${listing.Chapters} chapter `}
-              </li>
-              <li className='flex items-center gap-1 whitespace-nowrap '>
-                <SiAlpinelinux className='text-lg' />
-                {listing.BooksQuantity > 1
-                  ? `${listing.BooksQuantity} books `
-                  : `${listing.BooksQuantity} book `}
-              </li>
-              <li className='flex items-center gap-1 whitespace-nowrap '>
-                <VscAzureDevops className='text-lg' />
-                {listing.published ? 'published' : 'Un-published'}
-              </li>
-            </ul> */}
+            <p className='text-slate-800'>
+              <span className='font-semibold text-gray-700'>sponsers_detail - </span>
+              {listing.sponsers_detail}
+            </p>
+            <p className='text-slate-800'>
+              <span className='font-semibold text-gray-700'>organizational_detail - </span>
+              {listing.organizational_detail}
+            </p>
+            <p className='text-slate-800'>
+              <span className='font-semibold text-gray-700'>startDate - </span>
+              {listing.startDate}
+            </p>
+            <p className='text-slate-800'>
+              <span className='font-semibold text-gray-700'>endDate - </span>
+              {listing.endDate}
+            </p>
             {currentUser && listing.userRef !== currentUser._id && !contact && (
             <button onClick={()=> setContact(true)} className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3'>Contact author</button>
             )}
