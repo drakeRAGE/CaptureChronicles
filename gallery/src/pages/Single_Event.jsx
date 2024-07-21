@@ -21,7 +21,7 @@ const HeroSection = () => {
           <p className="flex items-center justify-center text-lg md:text-xl mb-6">
             <FaUserCircle className="mr-2" /> by Photo-Locations
           </p>
-          <div className="flex flex-col md:flex-row justify-center gap-4">
+          {/* <div className="flex flex-col md:flex-row justify-center gap-4">
             <button className="flex items-center gap-2 bg-transparent border-none text-white cursor-pointer text-lg md:text-xl hover:text-gray-300">
               <FaThumbsUp /> Upvote
             </button>
@@ -34,7 +34,7 @@ const HeroSection = () => {
             <button className="flex items-center gap-2 bg-transparent border-none text-white cursor-pointer text-lg md:text-xl hover:text-gray-300">
               <FaEllipsisH /> More
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
 
