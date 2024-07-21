@@ -93,7 +93,7 @@ const Event_map = ({ location }) => {
       try {
         const response = await axios.get(`https://api.opencagedata.com/geocode/v1/json`, {
           params: {
-            q: 'uttarakhand, india',
+            q: location,
             key: EVENT_MAP_API_KEY,
           },
         });
