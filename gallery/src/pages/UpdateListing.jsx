@@ -59,7 +59,7 @@ export default function CreateListing() {
 
     
     const handleImageSubmit = (e) => {
-        if(files.length>0 && files.length + formData.imageUrls.length<7) {
+        if(files.length>0 && files.length + formData.imageUrls.length<51) {
             setuploading(true)
             setImageUploadError(false)
             const promises = [];
@@ -71,11 +71,11 @@ export default function CreateListing() {
                 setImageUploadError(false);
                 setuploading(false)
             }).catch((error) => {
-                setImageUploadError("Image Upload Failed (10 MB max): ");
+                setImageUploadError("Image Upload Failed (100 MB max): ");
                 setuploading(false)
             })
         } else {
-            setImageUploadError("You can only upload up to 6 images.");
+            setImageUploadError("You can only upload up to 50 images.");
             setuploading(false)
         }
     }
