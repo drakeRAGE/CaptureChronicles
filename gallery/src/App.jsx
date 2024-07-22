@@ -30,7 +30,7 @@ export default function App() {
         <Route path="/sign-in" element={<Signin />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/about" element={<About />} />
-        <Route path="/events/*" element={<Events />} />
+        <Route path="/events/:tab" element={<Events />} />
         {/* <Route path="/event/*" element={<Events />} /> */}
         {/* <Route path="/newHome" element={<NewHome/>} />
         <Route path="/darkHome" element={<Darkhome/>} /> */}

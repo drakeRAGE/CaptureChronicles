@@ -10,44 +10,66 @@ import Newsletter from '../components/Newsletter';
 import Footer from '../components/Footer';
 
 export default function Home() {
-  const [offerListings, setOfferListings] = useState([]);
-  const [saleListings, setSaleListings] = useState([]);
-  const [rentListings, setRentListings] = useState([]);
-  SwiperCore.use([Navigation]);
-  // console.log(offerListings);
+  const [events, setEvents] = useState({ previous: [], ongoing: [], upcoming: [] });
+  // const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   useEffect(() => {
-    const fetchOfferListings = async () => {
+    const fetchEvents = async () => {
       try {
-        const res = await fetch('/api/listing/get?offer=true&limit=4');
+        // setLoading(true);
+        const res = await fetch('/api/listing/get');
+        if (!res.ok) {
+          throw new Error('Failed to fetch events');
+        }
         const data = await res.json();
-        setOfferListings(data);
-        fetchRentListings();
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    const fetchRentListings = async () => {
-      try {
-        const res = await fetch('/api/listing/get?type=rent&limit=4');
-        const data = await res.json();
-        setRentListings(data);
-        fetchSaleListings();
-      } catch (error) {
-        console.log(error);
+        // console.log('Fetched data:', data); // Log the fetched data to see its structure
+        const categorizedEvents = categorizeEvents(data);
+        setEvents(categorizedEvents);
+        // setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        // setLoading(false);
       }
     };
 
-    const fetchSaleListings = async () => {
-      try {
-        const res = await fetch('/api/listing/get?type=sale&limit=4');
-        const data = await res.json();
-        setSaleListings(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchOfferListings();
+    fetchEvents();
   }, []);
+  const categorizeEvents = (data) => {
+    const currentDate = new Date();
+    const previous = [];
+    const ongoing = [];
+    const upcoming = [];
+
+    if (!data || !Array.isArray(data)) {
+      console.error('Invalid data structure:', data); // Log an error if the data structure is invalid
+      return { previous, ongoing, upcoming };
+    }
+
+    data.forEach((event) => {
+      const startDate = new Date(event.startDate);
+      const endDate = new Date(event.endDate);
+
+      if (endDate < currentDate) {
+        previous.push(event);
+      } else if (startDate <= currentDate && endDate >= currentDate) {
+        ongoing.push(event);
+      } else if (startDate > currentDate) {
+        upcoming.push(event);
+      }
+    });
+
+    return { previous, ongoing, upcoming };
+  };
+
+  // if (loading) {
+  //   return <div style={{height: '92vh'}} className="text-center m-auto  text-white">Loading...</div>;
+  // }
+
+  if (error) {
+    return <div className="text-center h-calc(100vh-60px) text-red-600">Error: {error}</div>;
+  }
+
+  console.log( 'Previous- ', events['previous'], 'Upcoming -', events['upcoming'], 'Ongoing-',  events['ongoing'])
   return (
     <div>
       {/* top */}
@@ -87,67 +109,50 @@ export default function Home() {
         </div>
       </section>
 
-      {/* swiper */}
-      {/* <Swiper navigation>
-        {offerListings &&
-          offerListings.length > 0 &&
-          offerListings.map((listing) => (
-            <SwiperSlide key=''>
-              <div
-                style={{
-                  background: `url(${listing.imageUrls[0]}) center no-repeat`,
-                }}
-                className='h-[500px]'
-                key={listing._id}
-              ></div>
-            </SwiperSlide>
-          ))}
-          If you're seeing an error here, just ignore this error
-      </Swiper> */}
-
       <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10'>
-        {offerListings && offerListings.length > 0 && (
+        {events['ongoing'] && events['ongoing'].length > 0 && (
           <div className='bg-slate-800 p-8 rounded-lg'>
             <div className='my-3 flex justify-between items-center'>
               <h2 className='text-2xl font-semibold text-gray-100'>Ongoing events</h2>
-              <Link className='text-sm text-indigo-400 hover:underline' to={'/search?offer=true'}>
+              <Link className='text-sm text-indigo-400 hover:underline' to={'/search?searchTerm='}>
                 Show more events
               </Link>
             </div>
             <div className='flex flex-wrap gap-4'>
-              {offerListings.map((listing) => (
+              {events['ongoing'].map((listing) => (
                 <ListingItem listing={listing} key={listing._id} />
               ))}
             </div>
           </div>
         )}
 
-        {rentListings && rentListings.length > 0 && (
+        {events['previous'] && events['previous'].length > 0 && (
           <div className='bg-slate-800 p-8 rounded-lg'>
             <div className='my-3 flex justify-between items-center'>
               <h2 className='text-2xl font-semibold text-gray-100'>Featured events</h2>
-              <Link className='text-sm text-indigo-400 hover:underline' to={'/search?offer=true'}>
+              <Link className='text-sm text-indigo-400 hover:underline' to={'/search?searchTerm='}>
                 Show more events
               </Link>
             </div>
             <div className='flex flex-wrap gap-4'>
-              {rentListings.map((listing) => (
+              {events['previous'].slice(0,3).map((listing) => (
                 <ListingItem listing={listing} key={listing._id} />
               ))}
             </div>
+
           </div>
         )}
 
-        {saleListings && saleListings.length > 0 && (
+        {events['upcoming'] && events['upcoming'].length > 0 && (
           <div className='bg-slate-800 p-8 rounded-lg'>
             <div className='my-3 flex justify-between items-center'>
-              <h2 className='text-2xl font-semibold text-gray-100'>Previous events</h2>
-              <Link className='text-sm text-indigo-400 hover:underline' to={'/search?offer=true'}>
+              <h2 className='text-2xl font-semibold text-gray-100'>Upcoming events</h2>
+              <Link className='text-sm text-indigo-400 hover:underline' to={'/search?searchTerm='}>
                 Show more events
               </Link>
             </div>
             <div className='flex flex-wrap gap-4'>
-              {saleListings.map((listing) => (
+              {events['upcoming'].map((listing) => (
                 <ListingItem listing={listing} key={listing._id} />
               ))}
             </div>
