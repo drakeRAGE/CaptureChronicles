@@ -257,7 +257,7 @@ const App = () => {
 
   return (
     <div className="container mx-auto p-6 bg-gray-900 min-h-screen">
-      <h1 className="text-5xl font-extrabold text-center text-gradient mb-12">Event Page</h1>
+      <h1 className="text-5xl text-gray-400 font-extrabold text-center text-gradient mb-12">Event Page</h1>
       <div className="flex justify-center mb-12">
         {['previous', 'ongoing', 'upcoming'].map((tab) => (
           <button
