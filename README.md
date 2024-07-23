@@ -4,7 +4,7 @@ This repository contains the source code for a Photography Event Management Webs
 
 ## Installation
 
-Install book mern project with npm
+Install project with npm
 
 ```bash
   npm install 
