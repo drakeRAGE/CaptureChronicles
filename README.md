@@ -60,6 +60,10 @@ Deployment: Easily deployable using cloud services or containers for scalability
 Installation
 
 
+## 🔒 Protected Pages
+
+Secure Access: The Event Page, Profile Page, Create-Event Page, and Update Event Page are protected and accessible only after successful login. This ensures that only authorized users can view and manage sensitive information.
+
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
