@@ -1,5 +1,4 @@
-# Photography event management using MERN Stack and Tailwind CSS
-
+# Photography event management 
 This repository contains the source code for a Photography Event Management Website designed to showcase and manage photography events efficiently. The platform is built to cater to photographers, event organizers, and attendees, providing a seamless experience for managing event details, registration, and galleries.
 
 
