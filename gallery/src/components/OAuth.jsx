@@ -1,4 +1,3 @@
-
 import {GoogleAuthProvider, getAuth, signInWithPopup} from 'firebase/auth';
 import { app } from '../firebase';
 import { useDispatch } from 'react-redux';
@@ -30,6 +29,6 @@ export default function OAuth() {
         }
     };
   return (
-    <button type="button" onClick={handleGoogleSync} className='bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-90'>Continue with Google</button>
+    <button type="button" onClick={handleGoogleSync} className='bg-red-500 text-white p-3 rounded-lg uppercase hover:opacity-90'>Continue with Google</button>
   )
 }
