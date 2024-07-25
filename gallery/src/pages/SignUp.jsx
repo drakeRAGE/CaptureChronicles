@@ -48,24 +48,8 @@ export default function SignUp() {
   // console.log(formData)
   return (
     <div className=''>
-      {/* <h1 className='text-3xl text-center font-semibold my-7'>Sign Up</h1>
-      <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-        <input type="text" placeholder='username' className='border p-3 rounded-lg' id='username' onChange={handleChnage}/>
-        <input type="email" placeholder='email' className='border p-3 rounded-lg' id='email' onChange={handleChnage}/>
-        <input type="password" placeholder='password' className='border p-3 rounded-lg' id='password' onChange={handleChnage}/>
 
-        <button disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-70'>{loading ? 'Loading...' : 'Sign Up'}</button>
-        <OAuth />
-      </form>
-
-      <div className='flex gap-2 mt-5'>
-        <p>Already have an account?</p>
-        <Link to={'/sign-in'}>
-          <span className='text-blue-700'>Sign In</span>
-        </Link>
-      </div> */}
-
-      <section style={{height: '92vh'}} className="h-full bg-gray-800 dark:bg-neutral-700">
+      <section className="h-full min-h-screen bg-gray-800 dark:bg-neutral-700">
         <div className="container h-full p-5">
           <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
             <div className="w-full">
@@ -107,7 +91,7 @@ export default function SignUp() {
                         </Link>
                       </div>
 
-                      <div className='flex flex-col gap-4'>
+                      <div className='flex flex-col gap-4 pb-3'>
                         <p className='mb-1 pt-1 text-center'>Or</p>
                         <OAuth />
                   {/* {error && <p className='text-red-500 mt-5'>{error}</p>} */}
@@ -117,7 +101,7 @@ export default function SignUp() {
 
                   {/* <!-- Right column container with background and description--> */}
                   <div
-                    className="flex items-center rounded-b-lg lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none"
+                    className="hidden lg:flex items-center rounded-b-lg lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none"
                     style={{
                       background:
                         "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
@@ -128,7 +112,7 @@ export default function SignUp() {
                         We are more than just a company
                       </h4>
                       <p className="text-sm">
-                        Experience exceptional photo and gallery event management services tailored to bring your vision to life. Let us help you create unforgettable visual stories that will be cherished for years to come
+                        Experience exceptional photo and gallery event management services tailored to bring your vision to life. Let us help you create unforgettable visual stories that will be cherished for years to come.
                       </p>
                     </div>
                   </div>
