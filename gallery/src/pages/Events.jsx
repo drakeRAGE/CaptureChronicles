@@ -1,11 +1,10 @@
-
-
-import{ useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import EventList from '../components/EventsList';
 
 const App = () => {
   const [selectedTab, setSelectedTab] = useState('upcoming');
   const [events, setEvents] = useState({ previous: [], ongoing: [], upcoming: [] });
+
   useEffect(() => {
     const savedTab = localStorage.getItem('selectedTab');
     if (savedTab) {
@@ -14,17 +13,13 @@ const App = () => {
 
     const fetchEvents = async () => {
       try {
-        // setLoading(true);
         const res = await fetch('/api/listing/get');
-        if (!res.ok) {
-          throw new Error('Failed to fetch events');
-        }
+        if (!res.ok) throw new Error('Failed to fetch events');
         const data = await res.json();
-        console.log('Fetched data:', data); // Log the fetched data to see its structure
         const categorizedEvents = categorizeEvents(data);
         setEvents(categorizedEvents);
       } catch (err) {
-        console.error(err)
+        console.error(err);
       }
     };
 
@@ -43,7 +38,7 @@ const App = () => {
     const upcoming = [];
 
     if (!data || !Array.isArray(data)) {
-      console.error('Invalid data structure:', data); // Log an error if the data structure is invalid
+      console.error('Invalid data structure:', data);
       return { previous, ongoing, upcoming };
     }
 
@@ -51,38 +46,42 @@ const App = () => {
       const startDate = new Date(event.startDate);
       const endDate = new Date(event.endDate);
 
-      if (endDate < currentDate) {
-        previous.push(event);
-      } else if (startDate <= currentDate && endDate >= currentDate) {
-        ongoing.push(event);
-      } else if (startDate > currentDate) {
-        upcoming.push(event);
-      }
+      if (endDate < currentDate) previous.push(event);
+      else if (startDate <= currentDate && endDate >= currentDate) ongoing.push(event);
+      else if (startDate > currentDate) upcoming.push(event);
     });
 
     return { previous, ongoing, upcoming };
   };
+
   return (
-    <div className="container mx-auto p-6 bg-gray-900 min-h-screen">
-      <h1 className="text-5xl text-gray-400 font-extrabold text-center text-gradient mb-12">Event Page</h1>
-      <div className="flex justify-center mb-12">
+    <div className="bg-gray-900 min-h-screen flex flex-col items-center px-4 py-8 md:px-8 lg:px-16">
+      <h1 className="text-4xl md:text-5xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-8 md:mb-12">
+        Event Page
+      </h1>
+
+      {/* Tabs */}
+      <div className="flex flex-wrap justify-center gap-3 md:gap-6 mb-10 md:mb-12">
         {['previous', 'ongoing', 'upcoming'].map((tab) => (
           <button
             key={tab}
-            className={`px-8 py-4 mx-2 rounded-full font-bold transition-transform duration-300 transform ${
-              selectedTab === tab
-                ? 'bg-blue-600 text-white shadow-xl border border-blue-700'
-                : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-            }`}
+            className={`px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold text-sm md:text-base transition-all duration-300 shadow-lg ${selectedTab === tab
+                ? 'bg-blue-600 text-white border border-blue-700 scale-105'
+                : 'bg-gray-800 text-gray-300 hover:bg-gray-700 hover:scale-105'
+              }`}
             onClick={() => handleTabClick(tab)}
           >
             {`${tab.charAt(0).toUpperCase() + tab.slice(1)} Events`}
           </button>
         ))}
       </div>
-      <EventList events={events[selectedTab]} />
+
+      {/* Events Section */}
+      <div className="w-full max-w-6xl">
+        <EventList events={events[selectedTab]} />
+      </div>
     </div>
-  )}
+  );
+};
 
-
-  export default App;
+export default App;
