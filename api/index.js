@@ -32,7 +32,7 @@ app.listen(5000, () => {
 });
 
 // Root API
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   res.status(200).json({ message: "Hello, it's root!" });
 });
 
