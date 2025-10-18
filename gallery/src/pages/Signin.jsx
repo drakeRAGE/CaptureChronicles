@@ -65,6 +65,7 @@ export default function SignIn() {
                       </h4>
                     </div>
 
+                    {error && <p className='text-red-500 mt-5'>{error}</p>}
                       {/* <p className="mb-4">Please login to your account</p> */}
                     <form onSubmit={handleSubmit} className='flex flex-col gap-4 pb-2'>
                       <input type="email" placeholder='email' className='border p-3 rounded-lg' id='email' onChange={handleChnage}/>
@@ -110,7 +111,6 @@ export default function SignIn() {
                   </div>
                 </div>
 
-      {/* {error && <p className='text-red-500 mt-5'>{error}</p>} */}
               </div>
             </div>
           </div>
