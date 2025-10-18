@@ -70,6 +70,7 @@ export default function SignUp() {
                         </h4>
                       </div>
 
+                      {error && <p className='text-red-500 mt-5'>{error}</p>}
                         {/* <p className="mb-4">Please login to your account</p> */}
                       <form onSubmit={handleSubmit} className='flex flex-col gap-4 pb-2'>
                         <input type="text" placeholder='username' className='border p-3 rounded-lg' id='username' onChange={handleChnage}/>
@@ -94,7 +95,6 @@ export default function SignUp() {
                       <div className='flex flex-col gap-4 pb-3'>
                         <p className='mb-1 pt-1 text-center'>Or</p>
                         <OAuth />
-                  {/* {error && <p className='text-red-500 mt-5'>{error}</p>} */}
                       </div>
                     </div>
                   </div>
@@ -122,9 +122,6 @@ export default function SignUp() {
           </div>
         </div>
       </section>
-      
-
-      {error && <p className='text-red-500 mt-5'>{error}</p>}
     </div>
 
     
