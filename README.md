@@ -4,11 +4,14 @@
 [![Open Issues](https://img.shields.io/github/issues/drakeRAGE/CaptureChronicles?style=for-the-badge)](https://github.com/drakeRAGE/CaptureChronicles/issues)
 [![Stars](https://img.shields.io/github/stars/drakeRAGE/CaptureChronicles?style=for-the-badge)](https://github.com/drakeRAGE/CaptureChronicles/stargazers)
 [![Forks](https://img.shields.io/github/forks/drakeRAGE/CaptureChronicles?style=for-the-badge)](https://github.com/drakeRAGE/CaptureChronicles/network/members)
+<a href="https://discord.gg/JTGaCVy3Y"><img src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white" /></a>
+<a href="https://x.com/dragbosDEV"><img src="https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white" /></a>
+<a href="https://www.linkedin.com/in/deepak-joshi-dragbos"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+
 
 This repository contains the source code for a Photography Event Management Website designed to showcase and manage photography events efficiently. The platform is built to cater to photographers, event organizers, and attendees, providing a seamless experience for managing event details, registration, and galleries.
 
 ![image](https://github.com/user-attachments/assets/60df99a8-ff5d-4e18-8cb1-50265d7b0eb7)
-
 
 # Event Page
 ![image](https://github.com/user-attachments/assets/24c9911b-19ad-46a1-aba8-731a41b9eb2b)
