@@ -83,15 +83,7 @@ Secure Access: The Event Page, Profile Page, Create-Event Page, and Update Event
 
 ## Environment Variables
 
-To run this project, you will need to add the following environment variables to your .env file
-
-`MONGO`
-
-`VITE_FIREBASE_API_kEY`
-
-`JWT_SECRET`
-
-`OPENCAGE_API_KEY`
+To run this project, you will need to add some environment variables to your .env files. Check the env examples files in root and /gallery dir and create same .env files with your details.
 
 ## Deployment
 
@@ -102,12 +94,7 @@ To deploy this project run
 ```
 
 ## Contributing
-We welcome contributions from the community! If you're interested in contributing to this project, please follow these steps:
-
-Fork the repository.
-Create a new branch for your feature or bug fix.
-Commit your changes and push the branch.
-Open a pull request detailing your changes.
+We welcome contributions from the community! If you're interested in contributing to this project, please follow our contributing guidelines.
 
 ## Usage
 Admin Panel: Access administrative features to manage events, users, and site content.
@@ -119,3 +106,4 @@ Gallery: Explore photographs from past events and upload new ones.
 
 If you have any feedback, please reach out to us at crashbrown2004@gmail.com
 
+- Join our Discord: https://discord.gg/JTGaCVy3Y
