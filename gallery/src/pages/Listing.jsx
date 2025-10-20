@@ -7,6 +7,7 @@ import { FaShare, FaThumbsUp, FaThumbsDown, FaPlus, FaEllipsisH, FaUserCircle } 
 import Event_map from '../components/Event_map';
 import ImageGallery from '../components/ImageGallery';
 import Footer from '../components/Footer';
+import ShareMenu from '../components/ShareMenu';
 
 SwiperCore.use([Navigation]);
 
@@ -69,22 +70,9 @@ export default function Listing() {
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-black/30 to-transparent"></div>
 
         {/* Share Button */}
-        <button
-          onClick={() => {
-            navigator.clipboard.writeText(window.location.href);
-            setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
-          }}
-          className="absolute top-[13%] right-[3%] bg-black/40 hover:bg-black/60 border border-gray-700 backdrop-blur-sm transition-all p-3 rounded-full z-20"
-        >
-          <FaShare className="text-white text-lg" />
-        </button>
-
-        {copied && (
-          <p className="absolute top-[23%] right-[4%] bg-gray-800 px-3 py-1 rounded-md text-sm text-gray-200 shadow-md z-20">
-            Link copied!
-          </p>
-        )}
+        <div className="absolute top-[13%] right-[3%] z-20">
+          <ShareMenu url={window.location.href} />
+        </div>
 
         {/* Main Info */}
         <div className="relative z-10 text-center px-6 py-10 max-w-3xl">
