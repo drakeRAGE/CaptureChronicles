@@ -1,5 +1,5 @@
 // This file is been used to make the site active bcz of render's active site limitation
-const url = process.env.BACKEND_URL || 'http://localhost:5000';
+const url = process.env.BACKEND_URL || 'http://localhost:3000';
 
 const pingServer = async () => {
   try {
