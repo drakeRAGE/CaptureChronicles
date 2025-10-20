@@ -1,4 +1,10 @@
 # Photography event management 
+[![Hacktoberfest](https://img.shields.io/badge/Hacktoberfest-2025-blueviolet?style=for-the-badge&logo=hacktoberfest)](https://hacktoberfest.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](./LICENSE)
+[![Open Issues](https://img.shields.io/github/issues/drakeRAGE/CaptureChronicles?style=for-the-badge)](https://github.com/drakeRAGE/CaptureChronicles/issues)
+[![Stars](https://img.shields.io/github/stars/drakeRAGE/CaptureChronicles?style=for-the-badge)](https://github.com/drakeRAGE/CaptureChronicles/stargazers)
+[![Forks](https://img.shields.io/github/forks/drakeRAGE/CaptureChronicles?style=for-the-badge)](https://github.com/drakeRAGE/CaptureChronicles/network/members)
+
 This repository contains the source code for a Photography Event Management Website designed to showcase and manage photography events efficiently. The platform is built to cater to photographers, event organizers, and attendees, providing a seamless experience for managing event details, registration, and galleries.
 
 ![image](https://github.com/user-attachments/assets/60df99a8-ff5d-4e18-8cb1-50265d7b0eb7)
