@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const EventList = ({ events }) => {
   return (
@@ -13,13 +14,24 @@ const EventList = ({ events }) => {
             />
             <div className="p-6">
               <h2 className="text-2xl font-semibold text-white mb-2">{event.name}</h2>
-              <p className="text-gray-400">{events.description}</p>
+              <p className="text-gray-400">{event.description}</p>
             </div>
           </div>
         </Link>
       ))}
     </div>
   );
+};
+
+EventList.propTypes = {
+  events: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      imageUrls: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired
+    })
+  ).isRequired
 };
 
 export default EventList;

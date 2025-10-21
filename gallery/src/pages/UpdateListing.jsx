@@ -16,15 +16,6 @@ export default function CreateListing() {
         imageUrls: [],
         name: '',
         description: '',
-        // regularPrice: 50,
-        // discountPrice: 50,
-        // type: 'all',
-        // offer: false,
-        // author: '',
-        // published: true,
-        // BooksQuantity : 1,
-        // Pages: 50,
-        // Chapters: 1,
         location: '',
         organizer_name : '',
         sponsers_detail : '',
@@ -36,13 +27,10 @@ export default function CreateListing() {
     const [uploading, setuploading] = useState(false);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
-
-    // console.log(formData)
+    const listingId = params.listingId;
 
     useEffect( () => {
         const fetchListing = async ()=> {
-            const listingId = params.listingId;
-            
             const res = await fetch(`/api/listing/get/${listingId}`);
             const data = await res.json();
 
@@ -70,7 +58,7 @@ export default function CreateListing() {
                 setFormData({...formData, imageUrls: formData.imageUrls.concat(urls)});
                 setImageUploadError(false);
                 setuploading(false)
-            }).catch((error) => {
+            }).catch(() => {
                 setImageUploadError("Image Upload Failed (100 MB max): ");
                 setuploading(false)
             })
@@ -107,8 +95,6 @@ export default function CreateListing() {
             ...formData, 
             imageUrls: formData.imageUrls.filter((_, i)=> i!==index),
         })
-
-        console.log('working')
     }
 
     const handleChange = (e) => {
@@ -150,50 +136,6 @@ export default function CreateListing() {
     }
   };
   return (
-    // <main className='p-3 max-w-4xl mx-auto'>
-    //     <h1 className='text-3xl font-semibold text-center my-7'>Update a Event</h1>
-
-    //     <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
-    //         <div className='flex flex-col gap-4 flex-1'>
-    //             <input onChange={handleChange} value={formData.name} type='text' className='border p-3 rounded-lg' id='name' maxLength='40' minLength='5' placeholder='Name' />
-    //             <input onChange={handleChange} value={formData.description} type='text' className='border p-3 rounded-lg' id='description' required placeholder='Description' />
-    //             <input onChange={handleChange} value={formData.location} type='text' className='border p-3 rounded-lg' id='location' maxLength='40' required minLength='5' placeholder='Location' />
-
-
-    //             <div className='flex flex-wrap gap-4'>
-    //                 <div className='flex items-center gap-2'>
-    //                     <input type="number" id='ticketfee' min='50' max='50000' required className='p-3 border border-gray-300 rounded-lg '  onChange={handleChange} value={formData.ticketfee}/>
-    //                     <p>Ticket Fee</p>
-    //                 </div>
-    //             </div>
-    //         </div>
-
-    //         <div className='flex flex-col flex-1 gap-4'>
-    //             <p className='font-semibold'>Images:
-    //             <span className='font-norma text-gray-600 ml-2'>The first image will be the cover {max_50} </span>
-    //             </p>
-
-    //             <div className='flex gap-4'>
-    //                 const <input onChange={(e)=> setFiles(e.target.files)} className='p-3 border border-gray-300 rounded-w-full' type="file" id='images' accept='image/*' multiple />
-    //                 <button type='button' onClick={handleImageSubmit} className='p-3 text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80'>{uploading ? 'Uploading...' : 'Upload Images'}</button>
-    //             </div>
-    //             <p className='text-red-700 tx-sm'>{imageUploadError && imageUploadError}</p>
-    //             {
-    //                 formData.imageUrls.length > 0 && formData.imageUrls.map((url, index)=> (
-    //                     <div key={index} className='flex justify-between item-center p-3 border'>
-    //                         <img src={url} alt="listing image" className='w-20 h-20 object-contain rounded-lg'/>
-    //                         <button disabled={uploading} type='button' onClick={() => handleRemoveImage(index)} className='p-3 text-red-700 rounded-lg uppercase hover:opacity-95 '>Delete</button>
-    //                     </div>
-    //                 ))
-    //             }
-    //             <button disabled={loading || uploading} className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>{loading ? 'Updating...' : 'Update Event'}</button>
-
-    //             {error && <p className='text-red-700 text-sm'>{error}</p> }
-    //         </div>
-
-
-    //     </form>
-    // </main>
     <main className='p-3 max-w-4xl mx-auto'>
         <h1 className='text-3xl font-semibold text-center my-7'>Update a Event</h1>
 
@@ -212,16 +154,7 @@ export default function CreateListing() {
                         <input type="number" id='ticketfee' min='50' max='50000' required className='p-3 border border-gray-300 rounded-lg' onChange={handleChange} value={formData.ticketfee} />
                     </div>
                 </div>
-                {/* <div className='flex flex-wrap gap-4'>
-                    <div className='flex items-center gap-2'>
-                        <p>Start Date</p>
-                        <input type="date" id='startDate' required className='p-3 border border-gray-300 rounded-lg' onChange={handleChange} value={formData.startDate} />
-                    </div>
-                    <div className='flex items-center gap-2'>
-                        <p>End Date</p>
-                        <input type="date" id='endDate' required className='p-3 border border-gray-300 rounded-lg' onChange={handleChange} value={formData.endDate} />
-                    </div>
-                </div> */}
+
                 <div className='flex flex-wrap gap-4'>
                     <div className='flex items-center gap-2'>
                         <p>Start Date</p>
