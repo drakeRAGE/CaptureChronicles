@@ -1,10 +1,10 @@
-
 //currently we can have only 2500 requests per day and 1 req/sec
 import { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 // Fixing marker icon issue with Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
@@ -94,6 +94,10 @@ const Event_map = ({ location }) => {
       </div>
     </div>
   );
+};
+
+Event_map.propTypes = {
+  location: PropTypes.string.isRequired
 };
 
 export default Event_map;

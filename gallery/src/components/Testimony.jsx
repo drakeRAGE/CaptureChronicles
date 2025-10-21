@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Testimony = () => {
   return (
     <div>
@@ -14,10 +12,10 @@ const Testimony = () => {
                     Words from Others
                 </div>
                 <h1 className="mb-5 text-3xl font-semibold text-white md:text-center md:text-5xl">
-                    It's not just us.
+                    It&apos;s not just us.
                 </h1>
                 <p className="text-xl text-gray-100 md:text-center md:text-2xl">
-                    Here's what others have to say about us.
+                    Here&apos;s what others have to say about us.
                 </p>
             </div>
         </div>

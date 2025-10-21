@@ -22,7 +22,7 @@ export const userSlice = createSlice({
             state.error = action.payload;
             state.loading=false; 
         },
-        updateUserStart : (state, action) =>{
+        updateUserStart : (state) =>{
             state.loading= true;
         },
         updateUserSuccess : (state, action) =>{
@@ -37,7 +37,7 @@ export const userSlice = createSlice({
         deleteUserStart: (state) => {
             state.loading = true;
         },
-        deleteUserSuccess: (state, action) => {
+        deleteUserSuccess: (state) => {
             state.currentUser = null;
             state.loading = false;
             state.error = null;
@@ -49,7 +49,7 @@ export const userSlice = createSlice({
         signoutUserStart: (state) => {
             state.loading = true;
         },
-        signoutUserSuccess: (state, action) => {
+        signoutUserSuccess: (state) => {
             state.currentUser = null;
             state.loading = false;
             state.error = null;

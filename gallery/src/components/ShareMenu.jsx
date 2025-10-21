@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from 'prop-types';
 import { FaShareAlt } from "react-icons/fa";
 import {
     FaLink,
@@ -84,3 +85,7 @@ export default function ShareMenu({ url }) {
         </div>
     );
 }
+
+ShareMenu.propTypes = {
+    url: PropTypes.string.isRequired
+};

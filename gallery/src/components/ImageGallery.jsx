@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 
@@ -37,6 +37,16 @@ const ImageGallery = ({ images = [] }) => {
       </PhotoProvider>
     </div>
   );
+};
+
+ImageGallery.propTypes = {
+  images: PropTypes.arrayOf(
+    PropTypes.shape({
+      src: PropTypes.string.isRequired,
+      full: PropTypes.string,
+      alt: PropTypes.string
+    })
+  )
 };
 
 export default ImageGallery;

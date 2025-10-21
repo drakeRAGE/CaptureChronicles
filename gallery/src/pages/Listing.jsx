@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import SwiperCore from 'swiper';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css/bundle';
-import { FaShare, FaThumbsUp, FaThumbsDown, FaPlus, FaEllipsisH, FaUserCircle } from 'react-icons/fa';
+import { FaThumbsUp, FaThumbsDown, FaPlus, FaEllipsisH, FaUserCircle } from 'react-icons/fa';
 import Event_map from '../components/Event_map';
 import ImageGallery from '../components/ImageGallery';
 import Footer from '../components/Footer';
@@ -13,7 +13,6 @@ SwiperCore.use([Navigation]);
 
 export default function Listing() {
   const [listing, setListing] = useState(null);
-  const [copied, setCopied] = useState(false);
   const [error, setError] = useState(false);
   const params = useParams();
 
