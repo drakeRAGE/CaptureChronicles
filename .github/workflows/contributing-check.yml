@@ -1,0 +1,42 @@
+name: Contributing Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install root dependencies
+        run: npm install
+
+      - name: Install gallery dependencies
+        working-directory: ./gallery
+        run: npm install
+
+      - name: Build root project
+        run: npm run build
+
+      - name: Build gallery
+        working-directory: ./gallery
+        run: npm run build
+
+      # - name: Run tests
+      #   run: |
+      #     npm test
+      #     cd gallery && npm test
+
+      - name: Lint check
+        run: |
+          cd gallery && npm run lint
