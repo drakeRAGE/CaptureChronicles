@@ -1,4 +1,4 @@
-# Stage 1: Build React app
+# Stage 1: Build Vite app
 FROM node:18 AS build
 WORKDIR /app
 
@@ -17,11 +17,11 @@ WORKDIR /app
 # Install serve globally
 RUN npm install -g serve
 
-# Copy build output
-COPY --from=build /app/build ./build
+# Copy build output (Vite creates /dist, not /build)
+COPY --from=build /app/dist ./dist
 
-# Expose frontend port
+# Expose frontend port (Vite preview or serve default 3000)
 EXPOSE 3000
 
 # Start server
-CMD ["serve", "-s", "build", "-l", "3000"]
+CMD ["serve", "-s", "dist", "-l", "3000"]
