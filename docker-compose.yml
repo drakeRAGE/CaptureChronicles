@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=development
+    networks:
+      - capturechronicles
+
+  gallery:
+    build:
+      context: ./gallery
+      dockerfile: Dockerfile.gallery
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://api:5000
+    networks:
+      - capturechronicles
+    depends_on:
+      - api
+
+networks:
+  capturechronicles:
+    driver: bridge
