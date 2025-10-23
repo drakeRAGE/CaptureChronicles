@@ -20,8 +20,8 @@ RUN npm install -g serve
 # Copy build output (Vite creates /dist, not /build)
 COPY --from=build /app/dist ./dist
 
-# Expose frontend port (Vite preview or serve default 3000)
-EXPOSE 3000
+# Expose frontend port (Vite preview or serve default 3001)
+EXPOSE 3001
 
 # Start server
-CMD ["serve", "-s", "dist", "-l", "3000"]
+CMD ["serve", "-s", "dist", "-l", "3001"]
