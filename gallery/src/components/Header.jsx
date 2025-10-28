@@ -14,6 +14,8 @@ const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
+  const isActive = (path) =>
+    location.pathname === path ? "text-blue-500 font-bold" : "";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,39 +70,39 @@ const Header = () => {
             menuOpen ? 'flex' : 'hidden'
           }`}
         >
-          <a
-            className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-            href="/"
+          <Link
+            className={`px-4 ${isActive("/")}  py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200  focus:outline-none focus:shadow-outline`}
+            to="/"
           >
             Home
-          </a>
-          <a
-            className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-            href="/about"
+          </Link>
+          <Link
+            className={`px-4 ${isActive("/about")} py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200  focus:outline-none focus:shadow-outline`}
+            to="/about"
           >
-            About
-          </a>
-          <a
-            className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-            href="/contact"
+            About 
+          </Link>
+          <Link
+            className={`px-4 ${isActive("/contact")} py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200  focus:outline-none focus:shadow-outline`}
+            to="/contact"
           >
             Contact
-          </a>
-          <a
-            className="px-4 py-2 mt-2 mr-4 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-            href="/events"
+          </Link>
+          <Link
+            className={`px-4 ${isActive("/events")} py-2 mt-2 mr-4 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200  focus:outline-none focus:shadow-outline`}
+            to="/events"
           >
             Events
-          </a>
+          </Link>
           <Link to="profile">
             {currentUser ? (
               <img className="rounded-full pt-1 h-7 w-7 object-cover" src={currentUser.avatar || '/default-profile.png'} alt="profile" />
             ) : (
-              <a
-                className="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+              <Link
+                className="block px-4 py-2 mt-2 text-sm font-semibold rounded-lg  md:mt-0 md:ml-4 bg-blue-400 hover:bg-blue-700 text-white transition-all"
               >
                 Log-in
-              </a>
+              </Link>
             )}
           </Link>
         </nav>
