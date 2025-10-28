@@ -73,7 +73,7 @@ export default function SignIn() {
                       <button disabled={loading} className='bg-red-500 text-white p-3 rounded-lg uppercase hover:opacity-90'>{loading ? 'Loading...' : 'Sign In'}</button>
                     </form>
                     <div className="flex items-center justify-between pb-1">
-                      <p className="mb-0 mr-2">Don't have an account?</p>
+                      <p className="mb-0 mr-2">Don&apos;t have an account?</p>
                       <Link to={'/sign-up'}>
                         <TERipple rippleColor="light">
                           <button
