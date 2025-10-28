@@ -11,7 +11,7 @@
 
 This repository contains the source code for a Photography Event Management Website designed to showcase and manage photography events efficiently. The platform is built to cater to photographers, event organizers, and attendees, providing a seamless experience for managing event details, registration, and galleries.
 
-![image](https://github.com/user-attachments/assets/60df99a8-ff5d-4e18-8cb1-50265d7b0eb7)
+<img width="1879" height="885" alt="image" src="https://github.com/user-attachments/assets/795b6e9b-b9b6-4dca-a611-df4d64120e8e" />
 
 # Event Page
 ![image](https://github.com/user-attachments/assets/24c9911b-19ad-46a1-aba8-731a41b9eb2b)
