@@ -1,7 +1,7 @@
-import {useState}  from 'react'
+import {useEffect, useState}  from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice.jsx'
+import { signInStart, signInSuccess, signInFailure, clearError } from '../redux/user/userSlice.jsx'
 import OAuth from '../components/OAuth.jsx';
 import { TERipple } from "tw-elements-react";
 export default function SignIn() {
@@ -9,6 +9,10 @@ export default function SignIn() {
   const { loading, error } = useSelector((state) => state.user)
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(clearError());
+  }, [dispatch]);
 
   const handleChnage = (e) => {
     setFormData({
