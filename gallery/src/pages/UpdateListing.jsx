@@ -43,10 +43,10 @@ export default function CreateListing() {
         }
 
         fetchListing();
-    }, []);
+    }, [listingId]);
 
     
-    const handleImageSubmit = (e) => {
+    const handleImageSubmit = () => {
         if(files.length>0 && files.length + formData.imageUrls.length<51) {
             setuploading(true)
             setImageUploadError(false)

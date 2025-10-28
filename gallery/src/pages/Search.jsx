@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import {useNavigate} from 'react-router-dom'
 import ListingItem from '../components/ListingItem';
-
+import { useLocation } from 'react-router-dom';
 
 // bug -> The search with previous, ongoing and previous events  is not working currently, but I think it will be fixed soon as the other types are working but I am currently some lazy so sorry for now
 export default function Search() {
@@ -14,20 +14,19 @@ export default function Search() {
     const [loading, setLoading] = useState(false);
     const [listings, setListings] = useState([]);
     const [showMore, setShowMore] = useState(false);
+    const { search } = useLocation();
 
-    useEffect(()=> {
-        const urlParams = new URLSearchParams(location.search)
-        const searchTermFromUrl = urlParams.get('searchTerm')
-        const sortFromUrl = urlParams.get('sort')
-        const orderFromUrl = urlParams.get('order')
+    useEffect(() => {
+        const urlParams = new URLSearchParams(search);
+        const searchTermFromUrl = urlParams.get('searchTerm');
+        const sortFromUrl = urlParams.get('sort');
+        const orderFromUrl = urlParams.get('order');
 
-        if(searchTermFromUrl ||
-        sortFromUrl ||
-        orderFromUrl) {
+        if (searchTermFromUrl || sortFromUrl || orderFromUrl) {
             setSidebardata({
                 searchTerm: searchTermFromUrl || '',
                 sort: sortFromUrl || 'created_at',
-                order: orderFromUrl  || 'desc',
+                order: orderFromUrl || 'desc',
             });
         }
 
@@ -38,17 +37,13 @@ export default function Search() {
             const res = await fetch(`/api/listing/get?${searchQuery}`);
             const data = await res.json();
 
-            if(data.length > 8 ) {
-                setShowMore(true); 
-            } else {
-                setShowMore(false);
-            }
+            setShowMore(data.length > 8);
             setListings(data);
             setLoading(false);
         };
 
         fetchListings();
-    }, [location.search])
+    }, [search]);
 
     const handleChange = (e) => {
         if(e.target.id === 'searchTerm') {

@@ -22,34 +22,34 @@ export default function Profile() {
   // console.log(formData);
 
   useEffect(() => {
+    const handleFileUpload = () => {
+      const storage = getStorage(app);
+      const fileName = new Date().getTime() + file.name;
+      const storageRef = ref(storage, fileName)
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      uploadTask.on('state_changed',
+        (snapshot) => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          // console.log('Upload is'+ progress + '% done');
+          setFIlePercentage(Math.round(progress));
+        },
+        (_error) => {
+          setFileUploadError(true);
+          console.log(_error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) =>
+            setFormData((prev) => ({ ...prev, avatar: downloadURL }))
+          );
+        }
+      );
+
+    }
     if (file) {
       handleFileUpload(file);
     }
   }, [file]);
-
-  const handleFileUpload = () => {
-    const storage = getStorage(app);
-    const fileName = new Date().getTime() + file.name;
-    const storageRef = ref(storage, fileName)
-    const uploadTask = uploadBytesResumable(storageRef, file);
-
-    uploadTask.on('state_changed', 
-      (snapshot) => {
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        // console.log('Upload is'+ progress + '% done');
-        setFIlePercentage(Math.round(progress));
-    },
-    (_error) => {
-      setFileUploadError(true);
-    },
-    ()=> {
-      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => 
-        setFormData({...formData, avatar: downloadURL})
-      );
-    }
-    );
-    
-  }
 
   const handleChange = (e) => {
     setFormData({...formData, [e.target.id]: e.target.value});
