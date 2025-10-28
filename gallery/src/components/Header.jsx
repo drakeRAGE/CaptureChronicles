@@ -5,7 +5,6 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   const { currentUser } = useSelector((state) => state.user);
@@ -14,9 +13,7 @@ const Header = () => {
   const location = useLocation();
 
   const isActive = (path) =>
-    location.pathname === path
-      ? "text-blue-400 underline underline-offset-4"
-      : "text-gray-200";
+    location.pathname === path ? "text-blue-400" : "text-gray-200";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,51 +31,75 @@ const Header = () => {
   return (
     <header className="w-full sticky top-0 z-50 backdrop-blur-md bg-gradient-to-r from-slate-800/90 via-slate-700/90 to-slate-800/90 border-b border-slate-600 shadow-lg">
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between px-5 py-3">
-        {/* Logo */}
-        <Link
-          to="/"
-          className="text-2xl font-bold tracking-widest text-white uppercase hover:text-blue-400 transition-all"
-        >
-          Dragbos<span className="text-blue-400">Corp</span>
-        </Link>
+        
+        {/* Left section — Logo + Hamburger + Search */}
+        <div className="flex flex-col w-full sm:w-auto sm:flex-row sm:items-center sm:space-x-4">
+          <div className="flex items-center justify-between w-full sm:w-auto">
+            {/* Logo */}
+            <Link
+              to="/"
+              className="text-2xl font-bold tracking-widest text-white uppercase hover:text-blue-400 transition-all"
+            >
+              Dragbos<span className="text-blue-400">Corp</span>
+            </Link>
 
-        {/* Mobile Toggle */}
-        <button
-          onClick={toggleMenu}
-          className="md:hidden text-gray-200 focus:outline-none"
-          aria-label="Toggle navigation menu"
-        >
-          <svg
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            className={`w-7 h-7 transition-transform duration-300 ${
-              menuOpen ? "rotate-180" : ""
-            }`}
+            {/* Hamburger Icon (mobile only) */}
+            <button
+              onClick={toggleMenu}
+              className="sm:hidden text-gray-200 focus:outline-none"
+              aria-label="Toggle navigation menu"
+            >
+              <svg
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                className={`w-7 h-7 transition-transform duration-300 ${
+                  menuOpen ? "rotate-180" : ""
+                }`}
+              >
+                <path
+                  d={
+                    menuOpen
+                      ? "M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                      : "M3 5h14M3 10h14M3 15h14"
+                  }
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </button>
+          </div>
+
+          {/* Search Bar */}
+          <form
+            onSubmit={handleSubmit}
+            className="flex items-center bg-slate-800/70 rounded-full p-1 border border-slate-600 mt-3 sm:mt-0 w-full sm:w-auto"
           >
-            <path
-              d={
-                menuOpen
-                  ? "M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                  : "M3 5h14M3 10h14M3 15h14"
-              }
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Search..."
+              className="bg-transparent px-3 py-1 text-sm text-gray-200 focus:outline-none w-full sm:w-48"
             />
-          </svg>
-        </button>
+            <button className="p-2 bg-blue-600 rounded-full hover:bg-blue-700 transition">
+              <FaSearch className="text-white w-4 h-4" />
+            </button>
+          </form>
+        </div>
 
         {/* Nav Menu */}
         <div
-          className={`w-full md:w-auto transition-all duration-500 ease-in-out overflow-hidden md:overflow-visible ${
+          className={`w-full sm:w-auto transition-all duration-500 ease-in-out overflow-hidden sm:overflow-visible ${
             menuOpen
               ? "max-h-[500px] opacity-100 mt-4"
-              : "max-h-0 opacity-0 md:max-h-full md:opacity-100"
+              : "max-h-0 opacity-0 sm:max-h-full sm:opacity-100"
           }`}
         >
-          <div className="flex flex-col md:flex-row md:items-center md:space-x-5 bg-slate-800/90 md:bg-transparent rounded-2xl md:rounded-none p-4 md:p-0 border border-slate-700 md:border-0 shadow-lg md:shadow-none space-y-3 md:space-y-0">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-5 bg-slate-800/90 sm:bg-transparent rounded-2xl sm:rounded-none p-4 sm:p-0 border border-slate-700 sm:border-0 shadow-lg sm:shadow-none space-y-3 sm:space-y-0">
+            
             {/* Navigation Links */}
-            <nav className="flex flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-4">
+            <nav className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
               {["/", "/about", "/contact", "/events"].map((path, i) => {
                 const names = ["Home", "About", "Contact", "Events"];
                 return (
@@ -96,25 +117,8 @@ const Header = () => {
               })}
             </nav>
 
-            {/* Search */}
-            <form
-              onSubmit={handleSubmit}
-              className="flex items-center bg-slate-800/70 rounded-full p-1 mt-3 md:mt-0 border border-slate-600"
-            >
-              <input
-                type="text"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search..."
-                className="bg-transparent px-3 py-1 text-sm text-gray-200 focus:outline-none w-full md:w-48"
-              />
-              <button className="p-2 bg-blue-600 rounded-full hover:bg-blue-700 transition">
-                <FaSearch className="text-white w-4 h-4" />
-              </button>
-            </form>
-
             {/* Profile / Login */}
-            <div className="mt-3 md:mt-0 md:ml-2 flex justify-center">
+            <div className="mt-3 sm:mt-0 sm:ml-2 flex justify-center">
               {currentUser ? (
                 <Link to="/profile" onClick={() => setMenuOpen(false)}>
                   <img
