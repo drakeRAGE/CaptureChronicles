@@ -1,44 +1,47 @@
-import {useState}  from 'react'
-import {Link, useNavigate} from 'react-router-dom'
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice.jsx'
+import { signInStart, signInSuccess, signInFailure, clearError } from '../redux/user/userSlice.jsx';
 import OAuth from '../components/OAuth.jsx';
 import { TERipple } from "tw-elements-react";
+
 export default function SignIn() {
-  const [formData, setFormData]= useState({});
-  const { loading, error } = useSelector((state) => state.user)
+  const [formData, setFormData] = useState({});
+  const { loading, error } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(clearError());
+  }, [dispatch]);
 
   const handleChnage = (e) => {
     setFormData({
       ...formData,
-      [e.target.id] : e.target.value,
+      [e.target.id]: e.target.value,
     });
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       dispatch(signInStart());
-      const res = await fetch('/api/auth/signin',  {
+      const res = await fetch('/api/auth/signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
       const data = await res.json();
-      // console.log(data);
-      if(data.success === false) {
+      if (data.success === false) {
         dispatch(signInFailure(data.message));
         return;
       }
       dispatch(signInSuccess(data));
       navigate('/');
-    } catch(error) {
+    } catch (error) {
       dispatch(signInFailure(error.message));
     }
   };
@@ -65,13 +68,31 @@ export default function SignIn() {
                       </h4>
                     </div>
 
-                    {error && <p className='text-red-500 mt-5'>{error}</p>}
-                      {/* <p className="mb-4">Please login to your account</p> */}
-                    <form onSubmit={handleSubmit} className='flex flex-col gap-4 pb-2'>
-                      <input type="email" placeholder='email' className='border p-3 rounded-lg' id='email' onChange={handleChnage}/>
-                      <input type="password" placeholder='password' className='border p-3 rounded-lg' id='password' onChange={handleChnage}/>
-                      <button disabled={loading} className='bg-red-500 text-white p-3 rounded-lg uppercase hover:opacity-90'>{loading ? 'Loading...' : 'Sign In'}</button>
+                    {error && <p className="text-red-500 mt-5">{error}</p>}
+
+                    <form onSubmit={handleSubmit} className="flex flex-col gap-4 pb-2">
+                      <input
+                        type="email"
+                        placeholder="email"
+                        className="border p-3 rounded-lg"
+                        id="email"
+                        onChange={handleChnage}
+                      />
+                      <input
+                        type="password"
+                        placeholder="password"
+                        className="border p-3 rounded-lg"
+                        id="password"
+                        onChange={handleChnage}
+                      />
+                      <button
+                        disabled={loading}
+                        className="bg-red-500 text-white p-3 rounded-lg uppercase hover:opacity-90"
+                      >
+                        {loading ? 'Loading...' : 'Sign In'}
+                      </button>
                     </form>
+
                     <div className="flex items-center justify-between pb-1">
                       <p className="mb-0 mr-2">Don&apos;t have an account?</p>
                       <Link to={'/sign-up'}>
@@ -86,8 +107,8 @@ export default function SignIn() {
                       </Link>
                     </div>
 
-                    <div className='flex flex-col gap-4 pb-3'>
-                      <p className='mb-1 pt-1 text-center'>Or</p>
+                    <div className="flex flex-col gap-4 pb-3">
+                      <p className="mb-1 pt-1 text-center">Or</p>
                       <OAuth />
                     </div>
                   </div>
@@ -98,7 +119,7 @@ export default function SignIn() {
                   className="hidden lg:flex items-center rounded-b-lg lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none"
                   style={{
                     background:
-                      "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
+                      'linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)',
                   }}
                 >
                   <div className="px-4 py-6 text-white md:mx-6 md:p-12">
@@ -117,5 +138,5 @@ export default function SignIn() {
         </div>
       </div>
     </section>
-  )
+  );
 }
