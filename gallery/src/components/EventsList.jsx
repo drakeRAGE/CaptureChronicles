@@ -39,7 +39,8 @@ EventList.propTypes = {
       imageUrls: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired
     })
-  ).isRequired
+  ).isRequired,
+  category: PropTypes.string.isRequired,
 };
 
 export default EventList;
