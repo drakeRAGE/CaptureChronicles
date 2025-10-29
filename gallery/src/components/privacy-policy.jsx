@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
-
+import PropTypes from "prop-types";
 export default function PrivacyPolicy() {
   const navigate = useNavigate();
 
@@ -132,3 +132,8 @@ function Section({ title, content, delay }) {
     </motion.div>
   );
 }
+PrivacyPolicy.propTypes = {
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  delay: PropTypes.number, 
+};
