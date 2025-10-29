@@ -23,7 +23,7 @@ const Newsletter = () => {
                     </div>
                     <p>
                         We care bout the protection of your data. Read our{' '}
-                        <span className='text-[#00df9a]'>Privacy Policy.</span>
+                        <a href="/privacy-policy" className='text-[#00df9a] hover:underline'>Privacy Policy.</a>
                     </p>
                 </div>
             </div>
