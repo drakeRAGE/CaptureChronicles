@@ -12,7 +12,7 @@ import Listing from './pages/Listing'
 import Search from './pages/Search'
 import Contact from './pages/Contact'
 import Events from './pages/Events'
-
+import PrivacyPolicy from './components/privacy-policy'
 
 export default function App() {
   return (
@@ -26,6 +26,7 @@ export default function App() {
         <Route path="/contact" element={<Contact/>} />
         <Route path="/listing/:listingId" element={<Listing />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route element={<PrivateRoute />}>
           <Route path="/events" element={<Events />} />
           <Route path="/profile" element={<Profile />} />
