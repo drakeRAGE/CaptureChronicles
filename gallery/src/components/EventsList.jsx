@@ -1,7 +1,15 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const EventList = ({ events }) => {
+const EventList = ({ events, category }) => {
+  if (!events || events.length === 0) {
+    return (
+      <div className="text-center text-gray-400 text-md md:text-xl mt-12">
+        No {category} events found.
+      </div>
+    );
+  }
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
       {events.map((event) => (

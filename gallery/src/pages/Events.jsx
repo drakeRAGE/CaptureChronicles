@@ -78,7 +78,7 @@ const App = () => {
 
       {/* Events Section */}
       <div className="w-full max-w-6xl">
-        <EventList events={events[selectedTab]} />
+        <EventList events={events[selectedTab]} category={selectedTab} />
       </div>
     </div>
   );
