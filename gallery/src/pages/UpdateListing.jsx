@@ -21,6 +21,8 @@ export default function CreateListing() {
         sponsers_detail : '',
         organizational_detail : '',
         ticketfee : 50,
+        startDate: '',
+        endDate: '',
     });
     
     const [imageUploadError, setImageUploadError] =useState(false);
@@ -38,7 +40,13 @@ export default function CreateListing() {
                 console.log(data.message)
                 return;
             }
-            setFormData(data)
+            // Format dates for input fields (YYYY-MM-DD)
+            const formattedData = {
+                ...data,
+                startDate: data.startDate ? data.startDate.split('T')[0] : '',
+                endDate: data.endDate ? data.endDate.split('T')[0] : '',
+            };
+            setFormData(formattedData)
 
         }
 
