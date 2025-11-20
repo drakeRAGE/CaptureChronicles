@@ -7,7 +7,14 @@
   "scripts": {
     "dev": "nodemon api/index.js",
     "start": "node api/index.js",
-    "build": "npm install && npm install --prefix gallery && npm run build --prefix gallery"
+    "build": "npm install && npm install --prefix gallery && npm run build --prefix gallery",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:frontend": "npm run test --prefix gallery",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:all": "npm run test && npm run test:frontend && npm run test:e2e"
   },
   "keywords": [],
   "author": "",
@@ -20,5 +27,13 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.2.3",
     "nodemon": "^3.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
+    "@babel/types": "^7.28.5",
+    "babel-jest": "^30.2.0",
+    "jest": "^30.2.0",
+    "supertest": "^7.1.4"
   }
 }
