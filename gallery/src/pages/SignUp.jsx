@@ -7,6 +7,7 @@ export default function SignUp() {
   const [formData, setFormData]= useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+    const [agreed, setAgreed] = useState(false);
   const navigate = useNavigate();
   const handleChnage = (e) => {
     setFormData({
@@ -17,7 +18,10 @@ export default function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+    if (!agreed) { // ✅ Check if privacy policy accepted
+      setError("Please agree to the Privacy Policy before signing up.");
+      return;
+    }
     try {
       // console.log('Form Submitted!');
       setLoading(true);
@@ -65,7 +69,7 @@ export default function SignUp() {
                           src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
                           alt="logo"
                         />
-                        <h4 className=" mt-1 pb-1 text-xl font-semibold">
+                        <h4 className=" mt-1 pb-1 text-xl font-semibold mb-2">
                           We are The Drag Corp.
                         </h4>
                       </div>
@@ -76,6 +80,24 @@ export default function SignUp() {
                         <input type="text" placeholder='username' className='border p-3 rounded-lg' id='username' onChange={handleChnage}/>
                         <input type="email" placeholder='email' className='border p-3 rounded-lg' id='email' onChange={handleChnage}/>
                         <input type="password" placeholder='password' className='border p-3 rounded-lg' id='password' onChange={handleChnage}/>
+
+                        <div className="flex items-center gap-2 text-sm">
+                        <input
+                          type="checkbox"
+                          id="privacy"
+                          checked={agreed}
+                          onChange={() => setAgreed(!agreed)}
+                          className="w-4 h-4 hover:cursor-pointer"
+                        />
+                        <label htmlFor="privacy" className="text-gray-700 dark:text-gray-300">
+                          I agree to the{" "}
+                          <Link to="/privacy-policy" className="text-blue-500 hover:underline">
+                            Privacy Policy
+                          </Link>
+                        </label>
+                      </div>
+
+                      
                         <button disabled={loading} className='bg-red-500 text-white p-3 rounded-lg uppercase hover:opacity-95'>{loading ? 'Loading...' : 'Sign Up'}</button>
                       </form>
                       <div className="flex items-center justify-between pb-1">
